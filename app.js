@@ -19,7 +19,7 @@ app.post('/totp-generate', (req, res, next)=> {
 
     var token = Speakeasy.totp({
         secret: req.body.secret,
-        encoding: 'base32',
+        encoding: 'base32'
       });
 
     res.send({
@@ -34,7 +34,8 @@ app.post("/totp-validate", (req, res, next) => {
     let isValid = Speakeasy.totp.verify({
         secret: req.body.secret,
         encoding: "base32",
-        token: req.body.token
+        token: req.body.token,
+        window: 1
     });
     res.send({
         "isValide": isValid
